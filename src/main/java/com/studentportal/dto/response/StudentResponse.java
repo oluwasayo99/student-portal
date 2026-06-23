@@ -3,11 +3,12 @@ package com.studentportal.dto.response;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.UUID;
 import java.time.LocalDateTime;
 
 @Data
 public class StudentResponse {
-    private Long id;
+    private UUID id;
     private UserResponse user;
     private String studentNumber;
     private LocalDate dateOfBirth;

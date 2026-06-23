@@ -2,8 +2,8 @@
 -- Students Table
 -- ============================================
 CREATE TABLE students (
-    id                BIGSERIAL PRIMARY KEY,
-    user_id           BIGINT NOT NULL UNIQUE,
+    id                UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id           UUID NOT NULL UNIQUE,
     student_number    VARCHAR(50) NOT NULL UNIQUE,
     date_of_birth     DATE,
     phone             VARCHAR(20),

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -69,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse getStudentById(Long id) {
+    public StudentResponse getStudentById(UUID id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id));
         return studentMapper.toResponse(student);
@@ -88,7 +89,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public void deleteStudent(Long id) {
+    public void deleteStudent(UUID id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id));
         User user = student.getUser();

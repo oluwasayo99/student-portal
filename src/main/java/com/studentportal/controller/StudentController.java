@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/students")
@@ -34,7 +35,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'STAFF') or (hasRole('STUDENT') and @studentSecurity.isOwner(authentication, #id))")
-    public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
+    public ResponseEntity<StudentResponse> getStudentById(@PathVariable UUID id) {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
@@ -46,7 +47,7 @@ public class StudentController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable UUID id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
