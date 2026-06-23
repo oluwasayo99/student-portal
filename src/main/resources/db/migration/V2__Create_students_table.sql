@@ -2,18 +2,18 @@
 -- Students Table
 -- ============================================
 CREATE TABLE students (
-    id                BIGINT IDENTITY(1,1) PRIMARY KEY,
+    id                BIGSERIAL PRIMARY KEY,
     user_id           BIGINT NOT NULL UNIQUE,
-    student_number    NVARCHAR(50) NOT NULL UNIQUE,
+    student_number    VARCHAR(50) NOT NULL UNIQUE,
     date_of_birth     DATE,
-    phone             NVARCHAR(20),
-    address           NVARCHAR(500),
-    department_code   NVARCHAR(10) NOT NULL,
-    degree_type       NVARCHAR(5)  NOT NULL, -- 'U' or 'P'
+    phone             VARCHAR(20),
+    address           VARCHAR(500),
+    department_code   VARCHAR(10) NOT NULL,
+    degree_type       VARCHAR(5)  NOT NULL, -- 'U' or 'P'
     enrollment_year   INT          NOT NULL,
     enrollment_date   DATE DEFAULT CURRENT_TIMESTAMP,
-    created_at        DATETIME2 DEFAULT CURRENT_TIMESTAMP,
-    updated_at        DATETIME2 DEFAULT CURRENT_TIMESTAMP,
+    created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_student_user
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

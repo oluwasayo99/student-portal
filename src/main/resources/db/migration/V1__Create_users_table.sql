@@ -2,15 +2,15 @@
 -- Users Table
 -- ============================================
 CREATE TABLE users (
-    id              BIGINT IDENTITY(1,1) PRIMARY KEY,
-    email           NVARCHAR(255) NOT NULL UNIQUE,
-    password_hash   NVARCHAR(255) NOT NULL,
-    first_name      NVARCHAR(100) NOT NULL,
-    last_name       NVARCHAR(100) NOT NULL,
-    role            NVARCHAR(20)  NOT NULL,
-    is_active       BIT           DEFAULT 1,
-    created_at      DATETIME2     DEFAULT CURRENT_TIMESTAMP,
-    updated_at      DATETIME2     DEFAULT CURRENT_TIMESTAMP,
+    id              BIGSERIAL PRIMARY KEY,
+    email           VARCHAR(255) NOT NULL UNIQUE,
+    password_hash   VARCHAR(255) NOT NULL,
+    first_name      VARCHAR(100) NOT NULL,
+    last_name       VARCHAR(100) NOT NULL,
+    role            VARCHAR(20)  NOT NULL,
+    is_active       BOOLEAN      DEFAULT TRUE,
+    created_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chk_role CHECK (role IN ('ADMIN', 'STAFF', 'STUDENT'))
 );
 

@@ -1,17 +1,15 @@
-version: '3.8'
-
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_db
     ports:
-      - "1438:1433"
+      - "5432:5432"
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "StrongPassword123!"
-      MSSQL_PID: "Developer"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "StrongPassword123!"
+      POSTGRES_DB: student_portal
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "StrongPassword123!", "-Q", "SELECT 1"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d student_portal"]
       interval: 10s
-      timeout: 3s
+      timeout: 5s
       retries: 5

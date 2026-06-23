@@ -5,10 +5,10 @@ spring:
   application:
     name: student-portal
   datasource:
-    url: ${DB_URL:jdbc:sqlserver://localhost:1438;databaseName=student_portal;encrypt=true;trustServerCertificate=true;}
-    username: ${DB_USER:sa}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/student_portal}
+    username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:StrongPassword123!}
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,7 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.SQLServerDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     enabled: true
     baseline-on-migrate: true

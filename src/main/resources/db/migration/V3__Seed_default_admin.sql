@@ -7,5 +7,5 @@ VALUES (
     'System',
     'Admin',
     'ADMIN',
-    1
+    TRUE
 );
