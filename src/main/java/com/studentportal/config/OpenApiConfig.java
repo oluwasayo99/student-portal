@@ -5,7 +5,6 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,23 +24,5 @@ public class OpenApiConfig {
                                         .type(SecurityScheme.Type.HTTP)
                                         .scheme("bearer")
                                         .bearerFormat("JWT")));
-    }
-
-    @Bean
-    public OperationCustomizer customizeSortParameter() {
-        return (operation, handlerMethod) -> {
-            if (operation.getParameters() != null) {
-                operation.getParameters().forEach(parameter -> {
-                    if ("sort".equals(parameter.getName())) {
-                        parameter.setExample(null);
-                        if (parameter.getSchema() != null) {
-                            parameter.getSchema().setExample(null);
-                            parameter.getSchema().setDefault(null);
-                        }
-                    }
-                });
-            }
-            return operation;
-        };
     }
 }
