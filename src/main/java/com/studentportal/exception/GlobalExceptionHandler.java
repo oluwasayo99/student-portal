@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiErrorResponse> handleAccessDenied(AccessDeniedException ex) {
         ApiErrorResponse response = new ApiErrorResponse(
                 HttpStatus.FORBIDDEN.value(),
-                "Access Denied",
+                "Access Denied: You do not have the required role or permissions to perform this action.",
                 LocalDateTime.now()
         );
         return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
